@@ -1,0 +1,233 @@
+/* ============================================
+   SETTINGS OVERLAY
+============================================ */
+
+#settingsOverlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: 30000;
+
+}
+
+
+/* ============================================
+   SETTINGS BOX
+============================================ */
+
+#settingsBox {
+
+    width: 210px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff3c4,
+            #ead09a
+        );
+
+    border: 2px solid #4d2d12;
+
+    border-radius: 6px;
+
+    box-shadow:
+        4px 5px 0 #291d4d;
+
+    overflow: hidden;
+
+    font-family: 'Ribeye', cursive;
+
+}
+
+
+/* ============================================
+   HEADER
+============================================ */
+
+.settings-header {
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d6a15c,
+            #a96d31
+        );
+
+    color: white;
+
+    font-size: 10px;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.5);
+
+}
+
+
+#closeSettings {
+
+    width: 20px;
+
+    height: 20px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+}
+
+
+/* ============================================
+   CONTENT
+============================================ */
+
+.settings-content {
+
+    padding: 14px;
+
+    text-align: center;
+
+}
+
+
+.settings-content label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4d2d12;
+
+    font-size: 9px;
+
+}
+
+
+#characterNameInput {
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    height: 27px;
+
+    padding: 4px 6px;
+
+    border: 1px solid #6e4928;
+
+    border-radius: 3px;
+
+    background: #fffaf0;
+
+    color: #3a2615;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    outline: none;
+
+}
+
+
+#characterNameInput:focus {
+
+    border-color: #17688f;
+
+}
+
+
+.settings-hint {
+
+    margin: 6px 0 10px;
+
+    color: #765538;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+}
+
+
+/* ============================================
+   SAVE BUTTON
+============================================ */
+
+#saveCharacterName {
+
+    width: 65px;
+
+    padding: 5px 8px;
+
+    border: 1px solid #4d2d12;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d6a15c,
+            #a96d31
+        );
+
+    color: white;
+
+    font-family: 'Ribeye', cursive;
+
+    font-size: 8px;
+
+    cursor: pointer;
+
+    box-shadow:
+        1px 1px 0 #291d4d;
+
+}
+
+
+#saveCharacterName:hover {
+
+    filter: brightness(1.08);
+
+}
+
+
+#saveCharacterName:active {
+
+    transform: translate(
+        1px,
+        1px
+    );
+
+    box-shadow: none;
+
+}

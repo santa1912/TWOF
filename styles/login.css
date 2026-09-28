@@ -1,0 +1,412 @@
+/* =========================
+   LOGIN PAGE ONLY
+========================= */
+
+
+/* =========================
+   RESET LOGIN
+========================= */
+
+.login-screen *,
+.login-screen *::before,
+.login-screen *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   LOGIN SCREEN
+========================= */
+
+.login-screen {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(216, 195, 165, 0.78),
+            rgba(216, 195, 165, 0.78)
+        ),
+        url("/images/maps/Worldmap.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    z-index: 9999;
+}
+
+
+/* =========================
+   LOGIN BOX
+========================= */
+
+.login-screen .login-box {
+
+    width: 430px;
+
+    max-width: 90vw;
+
+    padding: 35px 35px 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background: rgba(255, 248, 230, 0.97);
+
+    border: 5px solid #6B4328;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 9px 0 #4A2E1B,
+        0 18px 30px rgba(0, 0, 0, 0.35);
+
+}
+
+
+/* =========================
+   GAME LOGO
+========================= */
+
+.login-screen .game-logo {
+
+    width: 300px;
+
+    max-width: 80%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 8px 8px rgba(0, 0, 0, 0.25)
+        );
+
+}
+
+
+/* =========================
+   GAME TITLE
+========================= */
+
+.login-screen .login-box h1 {
+
+    margin: 5px 0 10px;
+
+    font-family: 'Ribeye', cursive;
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    color: #7B3F20;
+
+    text-shadow:
+        2px 2px 0 #E9C46A;
+
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.login-screen .login-box > p {
+
+    margin: 0 0 25px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #72563D;
+
+}
+
+
+/* =========================
+   GOOGLE LOGIN BUTTON
+========================= */
+
+.login-screen .google-btn {
+
+    width: 280px;
+
+    height: 58px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #4285F4;
+
+    color: #FFFFFF;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #2865C7,
+        0 10px 15px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+/* =========================
+   GOOGLE ICON
+========================= */
+
+.login-screen .google-btn img {
+
+    width: 28px;
+
+    height: 28px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    background: #FFFFFF;
+
+    border-radius: 50%;
+
+    padding: 4px;
+
+}
+
+
+/* =========================
+   GOOGLE BUTTON HOVER
+========================= */
+
+.login-screen .google-btn:hover {
+
+    transform: translateY(-3px);
+
+    background: #5292F5;
+
+    box-shadow:
+        0 10px 0 #2865C7,
+        0 14px 20px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =========================
+   GOOGLE BUTTON ACTIVE
+========================= */
+
+.login-screen .google-btn:active {
+
+    transform: translateY(5px);
+
+    box-shadow:
+        0 2px 0 #2865C7;
+
+}
+
+
+/* =========================
+   GOOGLE BUTTON DISABLED
+========================= */
+
+.login-screen .google-btn:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.login-screen .logout-btn {
+
+    width: 280px;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #E74C3C;
+
+    color: #FFFFFF;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #A93226;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+/* =========================
+   LOGOUT HOVER
+========================= */
+
+.login-screen .logout-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 9px 0 #A93226;
+
+}
+
+
+/* =========================
+   LOGOUT ACTIVE
+========================= */
+
+.login-screen .logout-btn:active {
+
+    transform: translateY(4px);
+
+    box-shadow:
+        0 2px 0 #A93226;
+
+}
+
+
+/* =========================
+   LOGIN STATUS
+========================= */
+
+.login-screen .login-status {
+
+    min-height: 20px;
+
+    margin-top: 18px !important;
+
+    margin-bottom: 0 !important;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px !important;
+
+    color: #8B5A2B !important;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .login-screen .login-box {
+
+        width: 90vw;
+
+        padding:
+            25px 20px 30px;
+
+    }
+
+
+    .login-screen .game-logo {
+
+        width: 250px;
+
+    }
+
+
+    .login-screen .login-box h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .login-screen .login-box > p {
+
+        font-size: 12px;
+
+    }
+
+
+    .login-screen .google-btn,
+    .login-screen .logout-btn {
+
+        width: 220px;
+
+        height: 50px;
+
+        font-size: 15px;
+
+    }
+
+
+    .login-screen .google-btn img {
+
+        width: 24px;
+
+        height: 24px;
+
+    }
+
+}

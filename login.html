@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flavoria Adventure - Login</title>
+
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+
+<body>
+
+    <div id="menu" class="login-screen">
+
+        <div class="login-box">
+
+            <img
+                src="/images/logo.png"
+                class="game-logo"
+                alt="Flavoria Adventure Logo"
+            >
+
+            <h1>Flavoria Adventure</h1>
+
+            <p>
+                Explore the world of Flavoria City
+            </p>
+
+            <button
+                id="loginBtn"
+                class="google-btn"
+            >
+                <span>Login with Google</span>
+            </button>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn"
+                style="display: none;"
+            >
+                Logout
+            </button>
+
+            <p
+                id="loginStatus"
+                class="login-status"
+            ></p>
+
+        </div>
+
+    </div>
+
+    <script
+        type="module"
+        src="/login.js"
+    ></script>
+
+</body>
+
+</html>

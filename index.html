@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The World of Flavors</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ribeye&display=swap" rel="stylesheet">
+  <!-- Overworld styles -->
+  <link href="/styles/global.css" type="text/css" rel="stylesheet">
+  <link href="/styles/TextMessage.css" type="text/css" rel="stylesheet">
+  <link href="/styles/SceneTransition.css" type="text/css" rel="stylesheet">
+  <link href="/styles/KeyboardMenu.css" type="text/css" rel="stylesheet">
+  <link href="/styles/Hud.css" type="text/css" rel="stylesheet">
+  <link href="/styles/TitleScreen.css" type="text/css" rel="stylesheet">
+  <!-- Battle css -->
+  <link href="/styles/Battle.css" type="text/css" rel="stylesheet">
+  <link href="/styles/Combatant.css" type="text/css" rel="stylesheet">
+  <link href="/styles/SubmissionMenu.css" type="text/css" rel="stylesheet">
+  <link href="/styles/Team.css" type="text/css" rel="stylesheet">
+  <link href="/styles/Menus.css" type="text/css" rel="stylesheet">
+  <!-- Game Menu CSS -->
+  <link href="/styles/GameMenu.css" type="text/css" rel="stylesheet">
+  <!-- Settings CSS -->
+  <link href="/styles/Settings.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="game-container">
+
+    <canvas class="game-canvas" width="352" height="198">
+    </canvas>
+
+    <!-- Game Menu -->
+    <button id="menuButton" type="button" aria-label="Menu" tabindex="-1">
+      &#x2699;&#xFE0F;
+    </button>
+
+    <div id="dropdownMenu">
+
+      <button id="musicBtn">
+        &#x1F50A; Music: ON
+      </button>
+
+      <button id="tutorialBtn">
+        &#x1F3AE; How to Play
+      </button>
+
+      <button type="button" id="settingsBtn">
+        &#x2712;&#xFE0F; Settings
+      </button>
+
+      <button id="logoutBtn">
+        Logout
+      </button>
+
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgm" loop>
+      <source src="/audio/bgm.mp3" type="audio/mpeg">
+    </audio>
+
+  </div>
+  <p class="how-to-play">Use Arrow Keys to move. Enter to prompt/talk.</p>
+
+  <!-- Content -->
+  <script src="/Content/pizzas.js"></script>
+  <script src="/Content/actions.js"></script>
+  <script src="/Content/enemies.js"></script>
+
+  <!-- State -->
+  <script src="/State/PlayerState.js"></script>
+
+  <!-- Scripts -->
+  <script src="/utils.js"></script>
+  <script src="/DirectionInput.js"></script>
+  <script src="/Overworld.js"></script>
+  <script src="/GameObject.js"></script>
+  <script src="/Person.js"></script>
+  <script src="/PizzaStone.js"></script>
+  <script src="/Sprite.js"></script>
+  <script src="/OverworldMap.js"></script>
+  <script src="/OverworldEvent.js"></script>
+  <script src="/TextMessage.js"></script>
+  <script src="/KeyPressListener.js"></script>
+  <script src="/RevealingText.js"></script>
+  <script src="/SceneTransition.js"></script>
+  <script src="/KeyboardMenu.js"></script>
+  <script src="/Hud.js"></script>
+  <script src="/PauseMenu.js"></script>
+  <script src="/CraftingMenu.js"></script>
+  <script src="/Progress.js"></script>
+  <script src="/TitleScreen.js"></script>
+
+  <!-- Battle -->
+  <script src="/Battle/Battle.js"></script>
+  <script src="/Battle/Combatant.js"></script>
+  <script src="/Battle/Team.js"></script>
+  <script src="/Battle/SubmissionMenu.js"></script>
+  <script src="/Battle/ReplacementMenu.js"></script>
+  <script src="/Battle/BattleEvent.js"></script>
+  <script src="/Battle/TurnCycle.js"></script>
+  <script src="/Battle/BattleAnimations.js"></script>
+
+  <script src="/init.js"></script>
+  <script src="/Settings.js"></script>
+
+  <!-- =========================
+       Firebase Login / Logout
+  ========================== -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+    // =========================
+    // Firebase
+    // =========================
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyD1JQA8nB0tvSzzTrKwHYTSkBwejtw4IIo",
+
+      authDomain:
+        "the-world-of-flavors.firebaseapp.com",
+
+      projectId:
+        "the-world-of-flavors",
+
+      storageBucket:
+        "the-world-of-flavors.firebasestorage.app",
+
+      messagingSenderId:
+        "860294903887",
+
+      appId:
+        "1:860294903887:web:a7cc0240b101acda75923a",
+
+      measurementId:
+        "G-1VG78BJ9RS"
+
+    };
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+    const auth =
+      getAuth(app);
+
+
+    // =========================
+    // Elements
+    // =========================
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const dropdownMenu =
+      document.getElementById("dropdownMenu");
+
+    const musicBtn =
+      document.getElementById("musicBtn");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const bgm =
+      document.getElementById("bgm");
+
+
+    // =========================
+    // Music Settings
+    // =========================
+
+    bgm.volume = 0.4;
+
+
+    let musicOn =
+      localStorage.getItem("musicOn") !== "false";
+
+
+    // =========================
+    // Update Music Button
+    // =========================
+
+    function updateMusicButton() {
+
+      if (musicOn) {
+
+        musicBtn.innerHTML =
+          "&#x1F50A; Music: ON";
+
+      } else {
+
+        musicBtn.innerHTML =
+          "&#x1F507; Music: OFF";
+
+      }
+
+    }
+
+
+    // =========================
+    // Start Music
+    // =========================
+
+    function startMusic() {
+
+      if (!musicOn) {
+        return;
+      }
+
+      bgm.play()
+        .then(() => {
+
+          console.log(
+            "Background music started."
+          );
+
+        })
+        .catch((error) => {
+
+          console.log(
+            "Autoplay blocked:",
+            error
+          );
+
+        });
+
+    }
+
+
+    // =========================
+    // Check Login
+    // =========================
+
+    onAuthStateChanged(
+      auth,
+      (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "/login.html";
+
+          return;
+
+        }
+
+        console.log(
+          "Logged in:",
+          user.email
+        );
+
+        // Try to start music
+        startMusic();
+
+      }
+    );
+
+
+    // =========================
+    // Menu Button
+    // =========================
+
+    menuButton.addEventListener("click", (event) => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen =
+        dropdownMenu.style.display === "flex";
+
+      dropdownMenu.style.display =
+        isOpen ? "none" : "flex";
+
+      // เอา focus ออกจากปุ่ม
+      menuButton.blur();
+    });
+
+    // =========================
+    // Prevent Enter from activating Menu
+    // =========================
+
+    menuButton.addEventListener("keydown", (event) => {
+
+      if (event.key === "Enter" || event.key === " ") {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        menuButton.blur();
+
+      }
+
+    });
+
+    // =========================
+    // Music ON / OFF
+    // =========================
+
+    musicBtn.addEventListener(
+      "click",
+      (event) => {
+
+        // ป้องกัน click ส่งต่อไปยัง menu
+        event.stopPropagation();
+
+
+        musicOn = !musicOn;
+
+
+        // จำสถานะ
+        localStorage.setItem(
+          "musicOn",
+          musicOn
+        );
+
+
+        if (musicOn) {
+
+          startMusic();
+
+        } else {
+
+          bgm.pause();
+
+        }
+
+
+        updateMusicButton();
+
+      }
+    );
+
+
+    // =========================
+    // Start Music After User Interaction
+    // =========================
+
+    document.addEventListener(
+      "pointerdown",
+      () => {
+
+        startMusic();
+
+      },
+      { once: true }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      () => {
+
+        startMusic();
+
+      },
+      { once: true }
+    );
+
+
+    // =========================
+    // Initial Music Button
+    // =========================
+
+    updateMusicButton();
+
+
+    // =========================
+    // Logout
+    // =========================
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await signOut(auth);
+
+          window.location.href =
+            "/login.html";
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

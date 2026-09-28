@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Battle Test</title>
+
+  <!-- Existing Battle CSS -->
+  <link rel="stylesheet" href="/styles/Battle.css">
+  <link rel="stylesheet" href="/styles/global.css">
+</head>
+
+<body>
+
+  <div id="game-container"></div>
+
+  <!-- Core utilities -->
+  <script src="/utils.js"></script>
+
+  <!-- Game data -->
+  <script src="/Content/pizzas.js"></script>
+  <script src="/Content/actions.js"></script>
+  <script src="/Content/enemies.js"></script>
+
+  <!-- Player state -->
+  <script src="/State/PlayerState.js"></script>
+
+  <!-- Battle system -->
+  <script src="/Battle/Combatant.js"></script>
+  <script src="/Battle/Team.js"></script>
+  <script src="/Battle/BattleAnimations.js"></script>
+  <script src="/Battle/BattleEvent.js"></script>
+  <script src="/Battle/ReplacementMenu.js"></script>
+  <script src="/Battle/SubmissionMenu.js"></script>
+  <script src="/Battle/TurnCycle.js"></script>
+  <script src="/Battle/Battle.js"></script>
+
+  <script>
+
+    const battle = new Battle({
+      enemy: Enemies.beth,
+      arena: "Street",
+      onComplete: (didWin) => {
+        console.log("Battle complete:", didWin);
+      }
+    });
+
+    battle.init(document.querySelector("#game-container"));
+
+  </script>
+
+</body>
+
+</html>

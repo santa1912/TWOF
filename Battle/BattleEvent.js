@@ -77,6 +77,7 @@ class BattleEvent {
       replacements: Object.values(this.battle.combatants).filter(c => {
         return c.id !== caster.id && c.team === caster.team && c.hp > 0
       }),
+      battle: this.battle,
       onComplete: submission => {
         //submission { what move to use, who to use it on }
         resolve(submission)

@@ -7,6 +7,7 @@
   background-image: url(/images/maps/StreetBattle.png);
   background-size: cover;
   image-rendering: pixelated;
+  overflow: hidden;
 }
 .Battle.green-kitchen {
   background-image: url(/images/maps/GreenKitchenBattle.png);
@@ -93,4 +94,221 @@
   left: 227px;
   top: 56px;
   animation: battle-glob-left 1s forwards;
+}
+
+/* Exit Battle Confirmation */
+
+.battle-exit-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 5000;
+}
+
+.battle-exit-box {
+    width: 105px;
+    padding: 7px 8px;
+
+    background: linear-gradient(180deg, #fff4c7, #f0d99b);
+
+    border: 1.5px solid #4d2d12;
+    border-radius: 4px;
+
+    box-shadow: 2px 2px 0 #291d4d;
+
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.battle-exit-title {
+    margin-bottom: 5px;
+
+    color: #4d2d12;
+
+    font-family: 'Ribeye', cursive;
+    font-size: 9px;
+}
+
+.battle-exit-text {
+    margin-bottom: 7px;
+
+    color: #4d2d12;
+
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+}
+
+.battle-exit-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.battle-exit-buttons button {
+    min-width: 34px;
+    padding: 3px 4px;
+
+    border: 1px solid #4d2d12;
+    border-radius: 2px;
+
+    color: white;
+
+    font-family: 'Ribeye', cursive;
+    font-size: 6px;
+
+    cursor: pointer;
+}
+
+.battle-exit-cancel {
+    background: #8b5a2b !important;
+}
+
+.battle-exit-ok {
+    background: #b87935 !important;
+}
+
+.battle-exit-buttons button:hover {
+    background: #d6a15c !important;
+}
+
+/* Attack / Action Tutorial */
+
+#attackTutorial {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    z-index: 6000;
+}
+
+
+.attack-tutorial-box {
+    width: 180px;
+    min-height: 130px;
+
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        180deg,
+        #fff4c7,
+        #f0d99b
+    );
+
+    border: 2px solid #4d2d12;
+    border-radius: 6px;
+
+    box-shadow: 3px 4px 0 #291d4d;
+
+    text-align: center;
+}
+
+
+.attack-tutorial-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+.attack-tutorial-title {
+    margin-bottom: 6px;
+
+    color: #4d2d12;
+
+    font-family: 'Ribeye', cursive;
+    font-size: 12px;
+}
+
+
+.attack-tutorial-name {
+    margin-bottom: 5px;
+
+    color: #8b4513;
+
+    font-family: 'Ribeye', cursive;
+    font-size: 11px;
+}
+
+
+.attack-tutorial-type {
+    margin-bottom: 7px;
+
+    color: #6b4a25;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+
+.attack-tutorial-description {
+    margin-bottom: 7px;
+
+    color: #4d2d12;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+
+.attack-tutorial-effect {
+    margin-bottom: 9px;
+
+    padding: 6px;
+
+    background: rgba(255,255,255,0.35);
+
+    border: 1px solid rgba(77,45,18,0.35);
+    border-radius: 3px;
+
+    color: #4d2d12;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+
+.attack-tutorial-ok {
+    min-width: 50px;
+
+    padding: 4px 8px;
+
+    border: 1px solid #4d2d12;
+    border-radius: 3px;
+
+    background: #b87935;
+
+    color: white;
+
+    font-family: 'Ribeye', cursive;
+    font-size: 7px;
+
+    cursor: pointer;
+}
+
+
+.attack-tutorial-ok:hover {
+    background: #d6a15c;
 }

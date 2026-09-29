@@ -26,6 +26,10 @@
   <link href="/styles/GameMenu.css" type="text/css" rel="stylesheet">
   <!-- Settings CSS -->
   <link href="/styles/Settings.css" type="text/css" rel="stylesheet">
+  <!-- Tutorial CSS -->
+  <link href="/styles/Tutorial.css" type="text/css" rel="stylesheet">
+  <link href="/styles/MovementTutorial.css" type="text/css" rel="stylesheet">
+  <link href="/styles/GameAttackTutorial.css" type="text/css" rel="stylesheet">
 
 </head>
 
@@ -47,12 +51,32 @@
         &#x1F50A; Music: ON
       </button>
 
-      <button id="tutorialBtn">
-        &#x1F3AE; How to Play
-      </button>
+      <div class="menu-dropdown-item">
+
+        <button id="tutorialBtn">
+          &#x1F3AE; How to Play
+        </button>
+
+        <div id="tutorialSubMenu">
+
+          <button id="fullTutorialBtn">
+            &#x1F4D6; Game Tutorial
+          </button>
+
+          <button id="movementTutorialBtn">
+            &#x1F579; Movement
+          </button>
+
+          <button id="attackTutorialBtn">
+            &#x2694;&#xFE0F; Attack
+          </button>
+
+        </div>
+
+      </div>
 
       <button type="button" id="settingsBtn">
-        &#x2712;&#xFE0F; Settings
+        &#x2712;&#xFE0F; Rename
       </button>
 
       <button id="logoutBtn">
@@ -103,12 +127,17 @@
   <script src="/Battle/Combatant.js"></script>
   <script src="/Battle/Team.js"></script>
   <script src="/Battle/SubmissionMenu.js"></script>
+  <script src="/AttackTutorial.js"></script>
   <script src="/Battle/ReplacementMenu.js"></script>
   <script src="/Battle/BattleEvent.js"></script>
   <script src="/Battle/TurnCycle.js"></script>
   <script src="/Battle/BattleAnimations.js"></script>
 
   <script src="/init.js"></script>
+
+  <script src="/Tutorial.js"></script>
+  <script src="/MovementTutorial.js"></script>
+  <script src="/GameAttackTutorial.js"></script>
   <script src="/Settings.js"></script>
 
   <!-- =========================
@@ -177,6 +206,24 @@
 
     const musicBtn =
       document.getElementById("musicBtn");
+
+    const settingsBtn =
+      document.getElementById("settingsBtn");
+
+    const tutorialBtn =
+      document.getElementById("tutorialBtn");
+
+    const tutorialSubMenu =
+      document.getElementById("tutorialSubMenu");
+
+    const fullTutorialBtn =
+      document.getElementById("fullTutorialBtn");
+
+    const movementTutorialBtn =
+      document.getElementById("movementTutorialBtn");
+
+    const attackTutorialBtn =
+      document.getElementById("attackTutorialBtn");
 
     const logoutBtn =
       document.getElementById("logoutBtn");
@@ -271,6 +318,14 @@
 
         // Try to start music
         startMusic();
+
+        // Open Movement Tutorial
+        if (localStorage.getItem("movementTutorialSeen") !== "true") {
+          setTimeout(() => {
+            window.movementTutorial.open();
+          }, 800);
+
+        }
 
       }
     );
@@ -383,6 +438,115 @@
 
     updateMusicButton();
 
+    // =========================
+    // Settings
+    // =========================
+
+    settingsBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        // ปิด dropdown menu
+        dropdownMenu.style.display = "none";
+
+        // เปิด Settings
+        window.gameSettings.open();
+
+      }
+    );
+
+    // =========================
+    // How to Play
+    // =========================
+
+    tutorialBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        tutorialSubMenu.classList.toggle("show");
+
+      }
+    );
+
+    // =========================
+    // Game Tutorial
+    // =========================
+
+    fullTutorialBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        tutorialSubMenu.classList.remove("show");
+        dropdownMenu.style.display = "none";
+
+        if (window.tutorial) {
+          window.tutorial.open();
+        }
+
+      }
+    );
+
+
+    // =========================
+    // Movement Tutorial
+    // =========================
+
+    movementTutorialBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        tutorialSubMenu.classList.remove("show");
+        dropdownMenu.style.display = "none";
+
+        // Reset เพื่อให้เปิด Tutorial ได้อีกครั้ง
+        localStorage.removeItem("movementTutorialSeen");
+
+        if (window.movementTutorial) {
+
+          window.movementTutorial.completed = false;
+
+          window.movementTutorial.open();
+
+        }
+
+      }
+    );
+
+
+    // =========================
+    // Attack Tutorial
+    // =========================
+
+    attackTutorialBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        tutorialSubMenu.classList.remove("show");
+        dropdownMenu.style.display = "none";
+
+        if (window.gameAttackTutorial) {
+          window.gameAttackTutorial.open();
+        } else {
+          console.error("GameAttackTutorial is not loaded");
+        }
+
+      }
+    );
 
     // =========================
     // Logout

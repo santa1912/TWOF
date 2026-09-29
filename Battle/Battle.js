@@ -82,8 +82,20 @@ class Battle {
     this.combatants[id] = new Combatant({
       ...Pizzas[config.pizzaId],
       ...config,
+      
+      // ใช้ชื่อที่ผู้เล่นตั้งเอง
+      name:
+        team === "player" &&
+          window.gameSettings &&
+          window.gameSettings.getPizzaId() === config.pizzaId
+          ? window.gameSettings.getName()
+          : Pizzas[config.pizzaId].name,
+
       team,
-      isPlayerControlled: team === "player"
+
+      isPlayerControlled:
+        team === "player"
+
     }, this)
 
     //Populate first active pizza
@@ -143,7 +155,9 @@ class Battle {
       onNewEvent: event => {
         return new Promise(resolve => {
           const battleEvent = new BattleEvent(event, this)
+
           battleEvent.init(resolve);
+          
         })
       },
       onWinner: winner => {

@@ -1,61 +1,93 @@
 class GameSettings {
 
-  constructor() {
-    this.characterName =
-      localStorage.getItem("characterName") || "Hero";
+    constructor() {
 
-    this.createElement();
-  }
+        // =========================
+        // Pizza ที่กำลังใช้งาน
+        // =========================
+
+        this.pizzaId = "s001";
 
 
-  // ============================================
-  // Create Settings UI
-  // ============================================
+        // =========================
+        // โหลดชื่อ Pizza
+        // =========================
 
-  createElement() {
+        const savedName =
+            localStorage.getItem(
+                `pizzaName_${this.pizzaId}`
+            );
 
-    this.element = document.createElement("div");
+        this.pizzaName =
+            savedName ||
+            window.Pizzas[this.pizzaId].name;
 
-    this.element.id = "settingsOverlay";
 
-    this.element.innerHTML = `
+        // =========================
+        // Create Settings UI
+        // =========================
+
+        this.createElement();
+    }
+
+
+    // =========================
+    // Create Element
+    // =========================
+
+    createElement() {
+
+        this.element =
+            document.createElement("div");
+
+        this.element.id =
+            "settingsOverlay";
+
+
+        this.element.innerHTML = `
 
       <div id="settingsBox">
 
+        <!-- Header -->
+
         <div class="settings-header">
 
-          <span>Settings</span>
+          <span>
+            Settings
+          </span>
 
           <button
             type="button"
             id="closeSettings"
           >
-            ×
+            &#x274C;
           </button>
 
         </div>
 
 
+        <!-- Content -->
+
         <div class="settings-content">
 
-          <label for="characterNameInput">
-            Character Name
+          <label
+            for="pizzaNameInput"
+          >
+            &#x2712;&#xFE0F; Chef Name
           </label>
+
 
           <input
             type="text"
-            id="characterNameInput"
+            id="pizzaNameInput"
             maxlength="16"
+            placeholder="Enter pizza name"
             autocomplete="off"
-          />
-
-          <p class="settings-hint">
-            Enter your character name.
-          </p>
+          >
 
           <button
             type="button"
-            id="saveCharacterName"
+            id="savePizzaName"
           >
             Save
           </button>
@@ -66,221 +98,269 @@ class GameSettings {
 
     `;
 
-    document.body.appendChild(this.element);
+
+        document.body.appendChild(
+            this.element
+        );
 
 
-    // Elements
+        // =========================
+        // Get Elements
+        // =========================
 
-    this.input =
-      this.element.querySelector(
-        "#characterNameInput"
-      );
-
-    this.closeButton =
-      this.element.querySelector(
-        "#closeSettings"
-      );
-
-    this.saveButton =
-      this.element.querySelector(
-        "#saveCharacterName"
-      );
+        this.input =
+            document.getElementById(
+                "pizzaNameInput"
+            );
 
 
-    // ============================================
-    // Close
-    // ============================================
+        this.closeButton =
+            document.getElementById(
+                "closeSettings"
+            );
 
-    this.closeButton.addEventListener(
-      "click",
-      () => {
+
+        this.saveButton =
+            document.getElementById(
+                "savePizzaName"
+            );
+
+
+        // =========================
+        // Close Button
+        // =========================
+
+        this.closeButton.addEventListener(
+            "click",
+            () => {
+
+                this.close();
+
+            }
+        );
+
+
+        // =========================
+        // Save Button
+        // =========================
+
+        this.saveButton.addEventListener(
+            "click",
+            () => {
+
+                this.save();
+
+            }
+        );
+
+
+        // =========================
+        // Keyboard
+        // =========================
+
+        this.input.addEventListener(
+            "keydown",
+            event => {
+
+                // Enter = Save
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    this.save();
+
+                }
+
+                // Escape = Close
+
+                if (event.key === "Escape") {
+
+                    event.preventDefault();
+
+                    this.close();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =========================
+    // Open Settings
+    // =========================
+
+    open() {
+
+        // โหลดชื่อปัจจุบันอีกครั้ง
+
+        const savedName =
+            localStorage.getItem(
+                `pizzaName_${this.pizzaId}`
+            );
+
+
+        if (savedName) {
+
+            this.pizzaName =
+                savedName;
+
+        }
+
+
+        // ใส่ชื่อใน Input
+
+        this.input.value =
+            this.pizzaName;
+
+
+        // แสดงหน้าต่าง
+
+        this.element.style.display =
+            "flex";
+
+
+        // Focus Input
+
+        this.input.focus();
+
+        this.input.select();
+
+    }
+
+
+    // =========================
+    // Close Settings
+    // =========================
+
+    close() {
+
+        this.element.style.display =
+            "none";
+
+
+        this.input.blur();
+
+    }
+
+
+    // =========================
+    // Save Pizza Name
+    // =========================
+
+    save() {
+
+        let name =
+            this.input.value.trim();
+
+
+        // ถ้าไม่ได้กรอกชื่อ
+
+        if (!name) {
+
+            return;
+
+        }
+
+
+        // =========================
+        // Update Settings
+        // =========================
+
+        this.pizzaName =
+            name;
+
+
+        // =========================
+        // Update PlayerState
+        // =========================
+
+        const pizzaId =
+            this.pizzaId;
+
+
+        const playerPizzaId =
+            Object.keys(
+                window.playerState.pizzas
+            ).find(
+                id =>
+                    window.playerState.pizzas[id].pizzaId
+                    === pizzaId
+            );
+
+
+        if (playerPizzaId) {
+
+            window.playerState.pizzas[
+                playerPizzaId
+            ].name = name;
+
+        }
+
+
+        // =========================
+        // Save LocalStorage
+        // =========================
+
+        localStorage.setItem(
+            `pizzaName_${pizzaId}`,
+            name
+        );
+
+
+        // =========================
+        // Update HUD
+        // =========================
+
+        utils.emitEvent(
+            "PlayerStateUpdated"
+        );
+
+
+        // =========================
+        // Close
+        // =========================
 
         this.close();
 
-      }
-    );
 
-
-    // ============================================
-    // Save
-    // ============================================
-
-    this.saveButton.addEventListener(
-      "click",
-      () => {
-
-        this.save();
-
-      }
-    );
-
-
-    // ============================================
-    // Enter = Save
-    // ============================================
-
-    this.input.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Enter") {
-
-          event.preventDefault();
-
-          this.save();
-
-        }
-
-      }
-    );
-
-
-    // ============================================
-    // Escape = Close
-    // ============================================
-
-    this.element.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Escape") {
-
-          this.close();
-
-        }
-
-      }
-    );
-
-
-    // ============================================
-    // Click outside
-    // ============================================
-
-    this.element.addEventListener(
-      "click",
-      event => {
-
-        if (event.target === this.element) {
-
-          this.close();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  // ============================================
-  // Open Settings
-  // ============================================
-
-  open() {
-
-    this.input.value =
-      this.characterName;
-
-    this.element.style.display =
-      "flex";
-
-    setTimeout(() => {
-
-      this.input.focus();
-
-      this.input.select();
-
-    }, 50);
-
-  }
-
-
-  // ============================================
-  // Close Settings
-  // ============================================
-
-  close() {
-
-    this.element.style.display =
-      "none";
-
-    this.input.blur();
-
-  }
-
-
-  // ============================================
-  // Save Character Name
-  // ============================================
-
-  save() {
-
-    let name =
-      this.input.value.trim();
-
-
-    // Empty name
-
-    if (!name) {
-
-      name = "Hero";
+        console.log(
+            "Pizza name changed:",
+            name
+        );
 
     }
 
 
-    // Save locally
+    // =========================
+    // Get Pizza Name
+    // =========================
 
-    this.characterName = name;
+    getName() {
 
-    localStorage.setItem(
-      "characterName",
-      name
-    );
-
-
-    // Update game
-
-    if (window.playerState) {
-
-      window.playerState.characterName =
-        name;
+        return this.pizzaName;
 
     }
 
 
-    // Send event
+    // =========================
+    // Get Pizza ID
+    // =========================
 
-    if (window.utils) {
+    getPizzaId() {
 
-      utils.emitEvent(
-        "CharacterNameUpdated"
-      );
+        return this.pizzaId;
 
     }
-
-
-    this.close();
-
-  }
-
-
-  // ============================================
-  // Get Name
-  // ============================================
-
-  getName() {
-
-    return this.characterName;
-
-  }
 
 }
 
 
-// ============================================
-// Create Global Settings
-// ============================================
+// =========================
+// Global Settings
+// =========================
 
 window.gameSettings =
-  new GameSettings();
+    new GameSettings();

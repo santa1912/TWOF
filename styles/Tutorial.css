@@ -1,0 +1,508 @@
+/* ========================================
+   HOW TO PLAY / TUTORIAL
+======================================== */
+
+#tutorialOverlay {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 20000;
+}
+
+
+/* ========================================
+   TUTORIAL BOX
+======================================== */
+
+#tutorialBox {
+
+    width: 400px;
+
+    min-height: 290px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff4c7,
+            #f0d99b
+        );
+
+    border:
+        3px solid
+        #4d2d12;
+
+    border-radius: 9px;
+
+    box-shadow:
+        5px 6px 0
+        #291d4d;
+
+    overflow: hidden;
+
+    font-family:
+        'Ribeye',
+        cursive;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.tutorial-header {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d6a15c,
+            #9b622c
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    text-shadow:
+        1px 1px 2px
+        rgba(0, 0, 0, 0.5);
+}
+
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+#closeTutorial {
+
+    width: 26px;
+
+    height: 26px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1;
+}
+
+
+#closeTutorial:hover {
+    transform: scale(1.1);
+}
+
+
+#closeTutorial:active {
+    transform: scale(0.95);
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.tutorial-content {
+
+    padding:
+        25px 30px 20px;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   ICON
+======================================== */
+
+.tutorial-icon {
+
+    width: 64px;
+
+    height: 64px;
+
+    margin:
+        0 auto 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 58px;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+#tutorialHeading {
+
+    margin:
+        0 0 14px;
+
+    color: #4d2d12;
+
+    font-size: 23px;
+
+    line-height: 1.2;
+
+    text-shadow:
+        1px 1px 0
+        rgba(255, 255, 255, 0.5);
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+#tutorialText {
+
+    margin: 0;
+
+    color: #4d2d12;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    min-height: 66px;
+}
+
+
+/* ========================================
+   TIP
+======================================== */
+
+.tutorial-tip {
+
+    margin-top: 17px;
+
+    padding:
+        11px 13px;
+
+    background:
+        rgba(
+            139,
+            90,
+            43,
+            0.12
+        );
+
+    border:
+        1px solid
+        #b87935;
+
+    border-radius: 5px;
+
+    color: #6b431f;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    text-align: left;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   FOOTER
+   SAME STYLE AS ATTACK TUTORIAL
+======================================== */
+
+.tutorial-footer {
+
+    min-height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding:
+        10px 18px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(
+            166,
+            119,
+            62,
+            0.18
+        );
+
+    border-top:
+        2px solid
+        rgba(
+            77,
+            45,
+            18,
+            0.25
+        );
+}
+
+
+/* ========================================
+   BACK / NEXT BUTTONS
+======================================== */
+
+.tutorial-footer button {
+
+    min-width: 100px;
+
+    padding:
+        9px 14px;
+
+    border:
+        2px solid
+        #4d2d12;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d6a15c,
+            #a96d31
+        );
+
+    color: white;
+
+    font-family:
+        'Ribeye',
+        cursive;
+
+    font-size: 13px;
+
+    line-height: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        3px 3px 0
+        #291d4d;
+
+    text-shadow:
+        1px 1px 1px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BUTTON HOVER
+======================================== */
+
+.tutorial-footer button:hover {
+
+    filter: brightness(1.08);
+}
+
+
+/* ========================================
+   BUTTON ACTIVE
+======================================== */
+
+.tutorial-footer button:active {
+
+    transform:
+        translate(
+            2px,
+            2px
+        );
+
+    box-shadow:
+        1px 1px 0
+        #291d4d;
+}
+
+
+/* ========================================
+   BUTTON DISABLED
+======================================== */
+
+.tutorial-footer button:disabled {
+
+    opacity: 0.45;
+
+    cursor: default;
+
+    filter: none;
+
+    transform: none;
+
+    box-shadow:
+        2px 2px 0
+        #291d4d;
+}
+
+
+/* ========================================
+   PAGE NUMBER
+======================================== */
+
+#tutorialPage {
+
+    min-width: 60px;
+
+    color: #4d2d12;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   SMALL SCREEN
+======================================== */
+
+@media (max-width: 520px) {
+
+    #tutorialBox {
+
+        width:
+            calc(100% - 24px);
+
+        min-height: 280px;
+    }
+
+
+    .tutorial-content {
+
+        padding:
+            24px 22px 22px;
+    }
+
+
+    .tutorial-icon {
+
+        width: 56px;
+
+        height: 56px;
+
+        font-size: 50px;
+    }
+
+
+    #tutorialHeading {
+
+        font-size: 20px;
+
+        line-height: 26px;
+    }
+
+
+    #tutorialText {
+
+        font-size: 12px;
+
+        line-height: 20px;
+    }
+
+
+    .tutorial-tip {
+
+        font-size: 10px;
+
+        line-height: 16px;
+    }
+
+
+    .tutorial-footer {
+
+        padding:
+            10px 14px;
+
+        gap: 10px;
+    }
+
+
+    .tutorial-footer button {
+
+        min-width: 82px;
+
+        padding:
+            8px 10px;
+
+        font-size: 11px;
+
+        line-height: 15px;
+    }
+
+
+    #tutorialPage {
+
+        min-width: 50px;
+
+        font-size: 11px;
+    }
+}

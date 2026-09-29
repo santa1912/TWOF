@@ -1,0 +1,279 @@
+/* ========================================
+   MOVEMENT TUTORIAL
+======================================== */
+
+#movementTutorial {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-bottom: 28px;
+
+    background: transparent;
+
+    z-index: 15000;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   BOX
+======================================== */
+
+.movement-tutorial-box {
+    width: 330px;
+
+    padding: 16px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff4c7,
+            #f0d99b
+        );
+
+    border: 2px solid #4d2d12;
+
+    border-radius: 7px;
+
+    box-shadow:
+        4px 5px 0 #291d4d;
+
+    text-align: center;
+
+    font-family: 'Ribeye', cursive;
+
+    animation:
+        movementTutorialFloat
+        1.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.movement-tutorial-title {
+
+    margin-bottom: 7px;
+
+    color: #4d2d12;
+
+    font-size: 18px;
+
+}
+
+
+/* ========================================
+   TEXT
+======================================== */
+
+.movement-tutorial-text {
+
+    color: #4d2d12;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   KEYBOARD
+======================================== */
+
+.keyboard-demo {
+
+    margin-top: 12px;
+
+}
+
+
+/* ========================================
+   KEY ROW
+======================================== */
+
+.key-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 5px;
+
+}
+
+
+/* ========================================
+   KEY
+======================================== */
+
+.move-key {
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #4d2d12;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #d6a15c
+        );
+
+    color: #4d2d12;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 0 #4d2d12;
+
+    animation:
+        keyPulse
+        1.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* ========================================
+   DIFFERENT KEY ANIMATION
+======================================== */
+
+.move-key[data-key="up"] {
+    animation-delay: 0s;
+}
+
+.move-key[data-key="left"] {
+    animation-delay: 0.15s;
+}
+
+.move-key[data-key="down"] {
+    animation-delay: 0.3s;
+}
+
+.move-key[data-key="right"] {
+    animation-delay: 0.45s;
+}
+
+
+/* ========================================
+   HINT
+======================================== */
+
+.movement-tutorial-hint {
+
+    margin-top: 12px;
+
+    color: #6b431f;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+}
+
+
+/* ========================================
+   FLOAT ANIMATION
+======================================== */
+
+@keyframes movementTutorialFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================
+   KEY PULSE
+======================================== */
+
+@keyframes keyPulse {
+
+    0% {
+        transform: translateY(0);
+
+        box-shadow:
+            0 3px 0 #4d2d12;
+    }
+
+    50% {
+        transform: translateY(2px);
+
+        box-shadow:
+            0 1px 0 #4d2d12;
+    }
+
+    100% {
+        transform: translateY(0);
+
+        box-shadow:
+            0 3px 0 #4d2d12;
+    }
+
+}
+
+
+/* ========================================
+   HIDE ANIMATION
+======================================== */
+
+.movement-tutorial-hide {
+
+    animation:
+        movementTutorialFadeOut
+        0.4s
+        ease
+        forwards !important;
+
+}
+
+
+@keyframes movementTutorialFadeOut {
+
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+}

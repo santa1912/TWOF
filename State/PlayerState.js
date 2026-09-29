@@ -3,6 +3,11 @@ class PlayerState {
     this.pizzas = {
       "p1": {
         pizzaId: "s001",
+
+        name:
+          localStorage.getItem("pizzaName_s001")
+          || "Slice Samurai",
+
         hp: 50,
         maxHp: 50,
         xp: 0,
@@ -40,7 +45,7 @@ class PlayerState {
   }
 
   addPizza(pizzaId) {
-    const newId = `p${Date.now()}`+Math.floor(Math.random() * 99999);
+    const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
     this.pizzas[newId] = {
       pizzaId,
       hp: 50,
